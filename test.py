@@ -3,8 +3,8 @@ from unigram import UnigramTokenizer
 
 def run_bbpe_test():
     # A corpus with Unicode characters and spaces
-    corpus = "Hello world! 👋 The quick brown fox jumped over the lazy dog. 你好世界！"
-    vocab_size = 500  # A larger vocabulary to see more meaningful merges
+    corpus = "Hello world! The quick brown fox jumped over the lazy dog. 你好世界！"
+    vocab_size = 500  # A larger vocabulary 
 
     tokenizer = BpeTokenizer()
     print("--- Training the tokenizer (BBPE) ---")
@@ -56,3 +56,4 @@ if __name__ == "__main__":
     run_bbpe_test()
     print("\n" + "="*50 + "\n")
     run_unigram_test()
+
