@@ -59,8 +59,6 @@ class BpeTokenizer:
                     k += 1
             
             token_list = new_token_list
-            # The print statement also needs to handle bytes
-            # You can decode the bytes to make the output readable
             print(f"Merge {i+1}: {most_frequent_pair} -> {new_token_bytes.decode('utf-8', errors='replace')}")
 
     def encode(self, text):
@@ -68,7 +66,6 @@ class BpeTokenizer:
         preprocessed_text = self._preprocess_text(text)
         token_list = [bytes([b]) for b in preprocessed_text.encode('utf-8')]
 
-        # Step 2: Apply merges in the order they were created
         sorted_merges = sorted(self.merges.keys(), key=lambda x: self.merges[x])
         
         for pair_bytes in sorted_merges:
@@ -84,7 +81,6 @@ class BpeTokenizer:
                     k += 1
             token_list = new_token_list
         
-        # Step 3: Convert the final list of byte tokens to integer IDs
         return [self.vocab[t] for t in token_list]
     
     def decode(self, token_ids):
@@ -100,4 +96,5 @@ class BpeTokenizer:
         return text.replace(' ', self.special_space)
 
     def _postprocess_text(self, text):
+
         return text.replace(self.special_space, ' ')
